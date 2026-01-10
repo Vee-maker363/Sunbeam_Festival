@@ -1149,7 +1149,7 @@ SET Total_amount = 229.97  -- $179.98 + $49.99
 WHERE Booking_id = 37;
 
 
--- Test 5.1: Index utilization for critical queries
+-- Test 5.1: Index utilisation for critical queries
 -- Check if queries use indexes properly
 
 --Foreign key index tests 
@@ -1174,8 +1174,7 @@ EXPLAIN QUERY PLAN SELECT * FROM Attendee WHERE Attendee_id = 1;
 EXPLAIN QUERY PLAN  
 SELECT * FROM Artist WHERE Genre = 'Rock'; --SCAN ARTIST--
 
---Complex but common joins
--- Complex but common joins
+--Complex and common joins
 EXPLAIN QUERY PLAN
 SELECT a.Name, p.Performance_date, p.Start_time
 FROM Artist a
@@ -1215,7 +1214,7 @@ WHERE Booking_date >= '2025-06-01' AND Booking_date < '2025-06-02';
 
 -- Test 5.2 Complex Query Performance timing
 -- Multi-table join with aggregation (timing start)
--- This query analyzes ticket sales patterns
+-- This query analyses ticket sales patterns
 EXPLAIN QUERY PLAN
 SELECT 
     strftime('%Y-%m', b.Booking_date) as Month,
@@ -1288,7 +1287,7 @@ WHERE Performance_date < '2025-07-25'
 
 --Test 5.4 Ticket Prices: All prices are positive and within reasonable ranges
 
-SELECT 'FAIL: Invalide ticket prices' AS test_name,
+SELECT 'FAIL: Invalid ticket prices' AS test_name,
         COUNT(*) AS 'issue_count'
 FROM Ticket_type
 WHERE Price <= 0 OR Price is NULL;
@@ -1395,7 +1394,7 @@ FROM (
     HAVING ABS(b.Total_amount - SUM(bli.Quantity * tt.Price)) > 0.01
 );
 
--- Test 5.7.4: Check for duplicate line items in same booking
+-- Test 5.7.4: Check for duplicate line items in the same booking
 SELECT 'FAIL: Duplicate ticket types in same booking' as test_name,
        COUNT(*) as issue_count
 FROM (
@@ -1405,5 +1404,3 @@ FROM (
     HAVING COUNT(*) > 1
 );
 
-
---last update 3:35 26/12/2025
